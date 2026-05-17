@@ -18,5 +18,13 @@ def index():
 def about():
     return render_template('about.html')
 
+@app.route('/invoice')
+def invoice():
+    return render_template('invoice.html')
+
+@app.route('/orders')
+def order_history():
+    return render_template('order_history.html')
+
 if __name__ == '__main__':
     app.run(debug=True)
