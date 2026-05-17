@@ -40,7 +40,6 @@ def add_to_cart():
     session.modified = True
     flash(f"{quantity} {flower}(s) added to cart.")
     return redirect(url_for('home'))
-    return render_template("index1.html")
 
 @app.route('/about')
 def about():
