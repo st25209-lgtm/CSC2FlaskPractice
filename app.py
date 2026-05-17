@@ -43,7 +43,7 @@ def add_to_cart():
     session['cart'] = cart
     session.modified = True
     flash(f"{quantity} {flower}(s) added to cart.")
-    return redirect(url_for('index'))
+    return redirect(url_for('otherIndex'))
 
 @app.route('/about')
 def about():
