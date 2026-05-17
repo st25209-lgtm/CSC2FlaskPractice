@@ -11,13 +11,13 @@ def load_flower_data():
 
 def load_addon_data():
     with open('data/addon.json') as file:
-        addons = json.load(file)
-    return addons
+        addon = json.load(file)
+    return addon
 
 @app.route('/')
 def index():
     flowers = load_flower_data()
-    addon = load_addon_data()
+    addons = load_addon_data()
     return render_template('index.html', flower=flowers, addon=addons)
 
 @app.route('/add_to_cart', methods=['POST'])
