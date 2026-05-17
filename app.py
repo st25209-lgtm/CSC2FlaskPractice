@@ -19,6 +19,27 @@ def index():
 
 @app.route('/add_to_cart', methods=['POST'])
 def add_to_cart():
+    flower = request.form['flower']
+    quantity = int(request.form['quantity'])
+    flowers, addons = load_data()
+    cart = session.get('cart', {})
+
+    if flower not in flowers:
+        flash("Invalid Flower Selected.")
+        return redirect(url_for('home'))
+    
+    if flower in cart:
+        cart[flower]['quantity'] += quantity
+    else:
+        cart[flower] = {
+            'price': flowers[flower]['price'],
+            'quantity': quantity
+        }
+    
+    session['cart'] = cart
+    session.modified = True
+    flash(f"{quantity} {flower}(s) added to cart.")
+    return redirect(url_for('home'))
     return render_template("index1.html")
 
 @app.route('/about')
