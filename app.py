@@ -7,12 +7,15 @@ app = Flask(__name__)
 def load_data():
     with open('data/flowers.json') as file:
         flowers = json.load(file)
-    return flowers
+
+    with open('data/addon.json') as file:
+        addons = json.load(file)
+    return flowers, addons
 
 @app.route('/')
 def index():
-    flowers = load_data()
-    return render_template('index.html', flower=flowers)
+    flowers, addons = load_data()
+    return render_template('index.html', flower=flowers, addon=addons)
 
 @app.route('/about')
 def about():
