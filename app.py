@@ -4,17 +4,20 @@ from flask import Flask, render_template, request, session, flash, redirect, url
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'
 
-def load_data():
+def load_flower_data():
     with open('data/flowers.json') as file:
         flowers = json.load(file)
+    return flowers
 
+def load_addon_data():
     with open('data/addon.json') as file:
         addons = json.load(file)
-    return flowers, addons
+    return addons
 
 @app.route('/')
 def index():
-    flowers, addons = load_data()
+    flowers = load_flower_data()
+    addon = load_addon_data()
     return render_template('index.html', flower=flowers, addon=addons)
 
 @app.route('/add_to_cart', methods=['POST'])
