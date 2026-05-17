@@ -17,10 +17,6 @@ def index():
     flowers, addons = load_data()
     return render_template('index.html', flower=flowers, addon=addons)
 
-@app.route('otherIndex')
-def otherIndex():
-    return render_template('index1.html')
-
 @app.route('/add_to_cart', methods=['POST'])
 def add_to_cart():
     flower = request.form['flower']
@@ -43,7 +39,7 @@ def add_to_cart():
     session['cart'] = cart
     session.modified = True
     flash(f"{quantity} {flower}(s) added to cart.")
-    return redirect(url_for('otherIndex'))
+    return redirect(url_for('home'))
 
 @app.route('/about')
 def about():
