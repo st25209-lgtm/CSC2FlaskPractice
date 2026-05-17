@@ -17,6 +17,10 @@ def index():
     flowers, addons = load_data()
     return render_template('index.html', flower=flowers, addon=addons)
 
+@app.route('/add_to_cart', methods=['POST'])
+def add_to_cart():
+    return render_template("index1.html")
+
 @app.route('/about')
 def about():
     return render_template('about.html')
