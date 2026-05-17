@@ -7,11 +7,19 @@
 </head>
 <body>
     <h1>Sample</h1>
-    <ul>
-        {% for flower, details in flower.items() %}
-        <li>{{ flower }} - ${{ details['price'] }} (Stock: {{ details['stock'] }})</li>
-        {% endfor %}
-    </ul>
+    <form action="{{ url_for('add_to_cart' )}}" method="post">
+        <fieldset>
+            <legend for="flower">Select Flowers</legend>
+            <select name="flower" id="flower">
+                {% for flower, details in flower.items() %}
+                <option value="{{ flower }}">{{ flower }} - ${{ details['price'] }}</option>
+                {% endfor %}
+            </select>
+            <label for="quantity">Quantity</label>
+            <input type="number" name="quantity" value="1" min="1">
+            <button type="submit">Add to Cart</button>
+        </fieldset>
+    </form>
 
     <h1>Add-Ons</h1>
     <ul>
