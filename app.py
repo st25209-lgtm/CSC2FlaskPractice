@@ -11,8 +11,8 @@ def load_flower_data():
 
 def load_addon_data():
     with open('data/addon.json') as file:
-        addon = json.load(file)
-    return addon
+        addons = json.load(file)
+    return addons
 
 @app.route('/')
 def index():
@@ -24,12 +24,12 @@ def index():
 def add_to_cart():
     flower = request.form['flower']
     quantity = int(request.form['quantity'])
-    flowers, addons = load_data()
+    flowers = load_flower_data()
     cart = session.get('cart', {})
 
     if flower not in flowers:
         flash("Invalid Flower Selected.")
-        return redirect(url_for('home'))
+        return redirect(url_for('index'))
     
     if flower in cart:
         cart[flower]['quantity'] += quantity
@@ -42,7 +42,7 @@ def add_to_cart():
     session['cart'] = cart
     session.modified = True
     flash(f"{quantity} {flower}(s) added to cart.")
-    return redirect(url_for('home'))
+    return redirect(url_for('index'))
 
 @app.route('/about')
 def about():
