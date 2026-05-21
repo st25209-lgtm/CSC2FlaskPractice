@@ -56,5 +56,9 @@ def invoice():
 def order_history():
     return render_template('order_history.html')
 
+@app.route('/remove_from_cart')
+def remove_from_cart():
+    return render_template("index.html")
+
 if __name__ == '__main__':
     app.run(debug=True)
