@@ -57,7 +57,7 @@ def order_history():
     return render_template('order_history.html')
 
 @app.route('/remove_from_cart')
-def remove_from_cart():
+def remove_from_cart(item):
     cart = session.get('cart', {})
 
     if item in cart:
