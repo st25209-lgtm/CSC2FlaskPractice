@@ -58,7 +58,16 @@ def order_history():
 
 @app.route('/remove_from_cart')
 def remove_from_cart():
-    return render_template("index.html")
+    cart = session.get('cart', {})
+
+    if item in cart:
+        del cart[item]
+        session['cart'] = cart
+        session.modified = True
+        flash(f"{item} removed from cart")
+    else:
+        flash(f"{item} not found in cart")
+    return redirect(url_for('index'))
 
 if __name__ == '__main__':
     app.run(debug=True)
