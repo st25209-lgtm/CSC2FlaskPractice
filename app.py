@@ -56,7 +56,7 @@ def invoice():
 def order_history():
     return render_template('order_history.html')
 
-@app.route('/remove_from_cart')
+@app.route('/remove_from_cart/<item>')
 def remove_from_cart(item):
     cart = session.get('cart', {})
 
