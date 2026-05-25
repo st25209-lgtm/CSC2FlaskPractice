@@ -10,15 +10,17 @@ def load_flower_data():
     return flowers
 
 def load_addon_data():
-    with open('data/addon.json') as file:
+    with open('data/addons.json') as file:
         addons = json.load(file)
     return addons
 
 @app.route('/')
 def index():
+    cart = session.get('cart', {})
     flowers = load_flower_data()
     addons = load_addon_data()
-    return render_template('index.html', flower=flowers, addon=addons)
+    return render_template('index.html', flowers=flowers, addon=addons, cart=cart)
+    # return render_template('index.html', flower=flowers, addon=addons)
 
 @app.route('/add_to_cart', methods=['POST'])
 def add_to_cart():
