@@ -23,6 +23,7 @@ def index():
     cart = session.get('cart', {})
     flowers = load_flower_data()
     addons = load_addon_data()
+    total = calculate_total(cart)
     return render_template('index.html', flowers=flowers, addon=addons, cart=cart)
     # return render_template('index.html', flower=flowers, addon=addons)
 
