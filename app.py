@@ -14,6 +14,10 @@ def load_addon_data():
         addons = json.load(file)
     return addons
 
+def calculate_total(cart):
+    total = sum(item['price'] * item['quantity'] for item in cart.values())
+    return total
+
 @app.route('/')
 def index():
     cart = session.get('cart', {})
