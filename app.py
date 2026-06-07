@@ -71,7 +71,7 @@ def remove_from_cart(item):
         del cart[item]
         session['cart'] = cart
         session.modified = True
-        flash(f"{item} removed from cart")
+        flash(f"You removed {item} from cart")
     else:
         flash(f"{item} not found in cart")
     return redirect(url_for('index'))
