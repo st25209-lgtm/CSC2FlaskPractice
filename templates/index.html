@@ -19,7 +19,7 @@
             </fieldset>
         </form>
         <h1>Add-Ons</h1>
-        <form action="{{ url_for('select-addon' )}}" method="POST">
+        <form action="{{ url_for('select_addon' )}}" method="POST">
             <fieldset>
                 <legend>Add-ons</legend>
                 {% for addon, data in addons.items() %}
