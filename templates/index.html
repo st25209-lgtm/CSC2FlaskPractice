@@ -24,7 +24,7 @@
                 <legend>Add-ons</legend>
                 {% for addon, data in addons.items() %}
                 <label>
-                    <input type="checkbox" name="addons" value="{{ addon }}">
+                    <input type="checkbox" name="addons" value="{{ addons }}">
                     {{ addon }} (${{ data.price }})
                 </label><br>
                 {% endfor %}
