@@ -24,7 +24,7 @@ def index():
     flowers = load_flower_data()
     addons = load_addon_data()
     total = calculate_total(cart)
-    return render_template('index.html', flowers=flowers, addon=addons, cart=cart)
+    return render_template('index.html', flowers=flowers, addons=addons, cart=cart)
     # return render_template('index.html', flower=flowers, addon=addons)
 
 @app.route('/add_to_cart', methods=['POST'])
@@ -76,5 +76,19 @@ def remove_from_cart(item):
         flash(f"{item} not found in cart")
     return redirect(url_for('index'))
 
+@app.route('/select_addon', methods=['POST'])
+def select_addon():
+    selected_addons = {}
+    addons = load_addon_data()
+
+    selected_keys = request.form.getlist('addons')
+
+    for addon in selected_keys:
+        if addon in addons: 
+            selected_addons[addon] = float(addons[addon]['price'])
+
+    session['selected_addons']
+    session.modified = True
+    return redirect(url_for('index'))
 if __name__ == '__main__':
     app.run(debug=True)
