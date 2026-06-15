@@ -87,7 +87,7 @@ def select_addon():
         if addon in addons: 
             selected_addons[addon] = float(addons[addon]['price'])
 
-    session['selected_addons']
+    session['selected_addons'] = selected_addons
     session.modified = True
     return redirect(url_for('index'))
 if __name__ == '__main__':
