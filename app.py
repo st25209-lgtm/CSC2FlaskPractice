@@ -21,11 +21,12 @@ def calculate_total(cart):
 @app.route('/')
 def index():
     cart = session.get('cart', {})
+    selected_addons = session.get('selected_addons', {})
     flowers = load_flower_data()
     addons = load_addon_data()
     total = calculate_total(cart)
-    return render_template('index.html', flowers=flowers, addons=addons, cart=cart)
-    # return render_template('index.html', flower=flowers, addon=addons)
+    return render_template('index.html', flowers=flowers, addons=addons, cart=cart, selected_addons=selected_addons, total=total)
+    # return render_template('index.html', flower=flowers, addon=addons
 
 @app.route('/add_to_cart', methods=['POST'])
 def add_to_cart():
