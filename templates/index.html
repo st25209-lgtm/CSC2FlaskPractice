@@ -44,6 +44,15 @@
         {% else %}
             <p class="flashes">The cart does not have any item(s)</p>
         {% endif %}
+        {% if selected_addons %}
+            <ul>
+                {% for addon, details in selected_addons.items() %}
+                 <li> {{ addon }} (${{ '%.2f' % details }})</li>
+                {% endfor %}
+                {% else %}
+                    <p>There are no addons.</p>
+            </ul>
+        {% endif%}
         {% with messages = get_flashed_messages() %}
             {% if messages %}
                 <ul class="flashes">
