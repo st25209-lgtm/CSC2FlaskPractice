@@ -48,12 +48,12 @@
         {% if selected_addons %}
             <ul>
                 {% for addon, details in selected_addons.items() %}
-                 <li> {{ addon }} (${{ '%.2f' % details }})</li>
+                 <li> {{ addon }} (${{ '%.2f' % details }}) </li>
                 {% endfor %}
+            </ul>
                 {% else %}
                     <p>There are no addons.</p>
-            </ul>
-        {% endif%}
+        {% endif %}
         {% with messages = get_flashed_messages() %}
             {% if messages %}
                 <ul class="flashes">
