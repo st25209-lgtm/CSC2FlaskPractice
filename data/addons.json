@@ -1,5 +1,6 @@
 {
     "Ribbons": {"price": 2},
     "Wrapping": {"price": 4},
-    "Bow": {"price": 5}
+    "Bow": {"price": 5},
+    "Chocolate": {"price": 10}
 }

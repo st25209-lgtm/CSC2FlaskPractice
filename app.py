@@ -85,7 +85,7 @@ def select_addon():
     selected_keys = request.form.getlist('addons')
 
     for addon in selected_keys:
-        if addon in addons: 
+        if addon in addons:
             selected_addons[addon] = float(addons[addon]['price'])
 
     session['selected_addons'] = selected_addons
