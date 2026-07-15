@@ -54,6 +54,7 @@
                 {% else %}
                     <p>There are no addons.</p>
         {% endif %}
+        <h2>Total: ${{'%.2f' % total}}</h2>
         {% with messages = get_flashed_messages() %}
             {% if messages %}
                 <ul class="flashes">

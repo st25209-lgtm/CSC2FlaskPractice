@@ -16,6 +16,7 @@ def load_addon_data():
 
 def calculate_total(cart, selected_addons):
     total = sum(item['price'] * item['quantity'] for item in cart.values())
+    total += sum(price for price in selected_addons.values())
     return total
 
 @app.route('/')
