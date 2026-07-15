@@ -14,7 +14,7 @@ def load_addon_data():
         addons = json.load(file)
     return addons
 
-def calculate_total(cart):
+def calculate_total(cart, selected_addons):
     total = sum(item['price'] * item['quantity'] for item in cart.values())
     return total
 
@@ -24,7 +24,7 @@ def index():
     selected_addons = session.get('selected_addons', {})
     flowers = load_flower_data()
     addons = load_addon_data()
-    total = calculate_total(cart)
+    total = calculate_total(cart, selected_addons)
     return render_template('index.html', flowers=flowers, addons=addons, cart=cart, selected_addons=selected_addons, total=total)
     # return render_template('index.html', flower=flowers, addon=addons
 
