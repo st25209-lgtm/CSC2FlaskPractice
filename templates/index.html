@@ -55,6 +55,9 @@
                     <p>There are no addons.</p>
         {% endif %}
         <h2>Total: ${{'%.2f' % total}}</h2>
+        <form method="POST">
+            <button type="submit" formaction="{{ url_for('cancel_order') }}">Cancel Order</button>
+        </form>
         {% with messages = get_flashed_messages() %}
             {% if messages %}
                 <ul class="flashes">
