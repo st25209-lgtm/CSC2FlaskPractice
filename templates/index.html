@@ -68,7 +68,7 @@
             <button type="submit" formaction="{{ url_for('cancel_order') }}" onclick="return confirm('Proceed to Checkout?')">Checkout</button>
             <button type="submit" formaction="{{ url_for('cancel_order') }}" onclick="return confirm('This will clear out your order. Are you sure?')">Cancel Order</button>
         </form>
-        <!--Flashes a message based on the action-->>
+        <!--Flashes a message based on the action-->
         {% with messages = get_flashed_messages() %}
             {% if messages %}
                 <ul class="flashes">
