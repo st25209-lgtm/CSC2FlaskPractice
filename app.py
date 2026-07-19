@@ -92,5 +92,15 @@ def select_addon():
     session['selected_addons'] = selected_addons
     session.modified = True
     return redirect(url_for('index'))
+
+@app.route('/cancel_order', methods=['POST'])
+def cancel_order():
+    session.pop('cart', None)
+    session.pop('selected_addons', None)
+    flash(f'Your Cart has been emptied')
+    session.modified = True
+
+    return redirect(url_for('index'))
+
 if __name__ == '__main__':
     app.run(debug=True)
