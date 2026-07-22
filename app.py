@@ -1,4 +1,5 @@
 import json
+import datetime
 
 from flask import Flask, render_template, request, session, flash, redirect, url_for
 app = Flask(__name__)
@@ -106,6 +107,27 @@ def cancel_order():
     session.modified = True
 
     return redirect(url_for('index'))
+
+@app.route('/checkout', methods=['POST'])
+def checkout():
+    customer_name = request.form['customer_name'].strip().title()
+
+    if not customer_name: 
+        flash("Customer name is required.")
+        return redirect(url_for('index'))
+    
+    cart = session.get('cart', {})
+    selected_addons = session.get('selected_addons', {})
+
+    if not cart: 
+        flash("Your cart is empty.")
+        return redirect(url_for('index'))
+    
+    total = calculate_total(cart, selected_addons)
+    invoice_date = datetime.datetime.now().strftime('%Y-%m-%d %H:M%S')
+    invoice_number = f"INV_{customer_name.replace(' ', '_')}_{invoice_date})"
+
+    return render_template('invoice.html', customer_name=customer_name, total=total, invoice_date=invoice_date, invoice_number=invoice_number)
 
 if __name__ == '__main__':
     app.run(debug=True)
