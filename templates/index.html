@@ -65,7 +65,7 @@
         <form method="POST">
             <label for="customer_name_checkout">Your Name:</label>
             <input type="input" name="customer_name" id="customer_name_checkout" required></br></br>
-            <button type="submit" formaction="{{ url_for('cancel_order') }}" onclick="return confirm('Proceed to Checkout?')">Checkout</button>
+            <button type="submit" formaction="{{ url_for('checkout') }}" onclick="return confirm('Proceed to Checkout?')">Checkout</button>
             <button type="submit" formaction="{{ url_for('cancel_order') }}" onclick="return confirm('This will clear out your order. Are you sure?')">Cancel Order</button>
         </form>
         <!--Flashes a message based on the action-->
