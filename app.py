@@ -29,6 +29,7 @@ def index():
     return render_template('index.html', flowers=flowers, addons=addons, cart=cart, selected_addons=selected_addons, total=total)
     # return render_template('index.html', flower=flowers, addon=addons
 
+# Redirects to Pages
 @app.route('/about')
 def about():
     return render_template('about.html')
@@ -41,6 +42,7 @@ def invoice():
 def order_history():
     return render_template('order_history.html')
 
+# Adding cart items through here
 @app.route('/add_to_cart', methods=['POST'])
 def add_to_cart():
     flower = request.form['flower']
@@ -65,6 +67,7 @@ def add_to_cart():
     flash(f"{quantity} {flower}(s) added to cart.")
     return redirect(url_for('index'))
 
+# Removing a cart through this function
 @app.route('/remove_from_cart/<item>')
 def remove_from_cart(item):
     cart = session.get('cart', {})
@@ -78,6 +81,7 @@ def remove_from_cart(item):
         flash(f"{item} not found in cart")
     return redirect(url_for('index'))
 
+# Selects an addon(s)
 @app.route('/select_addon', methods=['POST'])
 def select_addon():
     selected_addons = {}
@@ -93,6 +97,7 @@ def select_addon():
     session.modified = True
     return redirect(url_for('index'))
 
+# Cancelling Orders
 @app.route('/cancel_order', methods=['POST'])
 def cancel_order():
     session.pop('cart', None)
